@@ -1,0 +1,17 @@
+.selectable{
+    // cursor: pointer;
+    &:hover{
+        background: rgba(25, 2, 2, 0.33);
+    }
+}
+
+.id_row{
+    --bg-opacity: 1;
+    background-color: #f5656544;
+    // background-color: rgba(245, 101, 101, var(--bg-opacity));
+    color: black;
+}
+
+button{
+    line-height: 15px !important;
+}

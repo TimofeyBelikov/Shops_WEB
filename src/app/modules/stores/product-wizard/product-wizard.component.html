@@ -1,0 +1,77 @@
+<div class="flex flex-col w-full h-full p-4">
+
+    <div class="flex flex-row w-full justify-between text-gray-500">
+        <span class="text-lg text-gray-500 mb-2">
+            {{stand.name}} - Добавление товара
+        </span>
+        <button mat-button (click)="redirect()"> 
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <form [formGroup]="form">
+        <mat-form-field appearance="outline" class="mr-2" 
+            [formGroup]="form">
+            <mat-label>Наименование</mat-label>
+                <input matInput 
+                    [formControlName]="'name'">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Тип</mat-label>
+            <mat-select [formControlName]="'type'">
+              <mat-option *ngFor="let product_type of _productTypes" 
+                [value]="product_type">
+                <div class="flex flex-row">
+                    <span class="mr-2">
+                        {{product_type}}
+                    </span>
+                </div>
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+
+    <form [formGroup]="form">
+        <mat-form-field appearance="outline" class="mr-2" 
+            [formGroup]="form">
+            <mat-label>Цена - Базовая</mat-label>
+            <input matInput type="number" 
+                [formControlName]="'base_price'">
+                <span class="mx-2 opacity-50" matSuffix>
+                    Руб
+                </span>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="mr-2" 
+            [formGroup]="form">
+            <mat-label>Цена - Оптовая</mat-label>
+            <input matInput type="number" 
+                [formControlName]="'wholesale_price'">
+                <span class="mx-2 opacity-50" matSuffix>
+                    Руб
+                </span>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="mr-2" 
+            [formGroup]="form">
+            <mat-label>Налог</mat-label>
+            <input matInput type="number" 
+                [formControlName]="'tax'">
+                <span class="mx-2 opacity-50" matSuffix>
+                    Руб
+                </span>
+        </mat-form-field>
+    </form>
+    <mat-divider class="m-8">
+
+    </mat-divider>
+    <attributes-wizard [attributesFormRef]="attributeControlRef">
+    </attributes-wizard>
+       
+
+    <!-- Подтверждение -->
+    <button mat-button (click)="createProduct()"> 
+        <mat-icon>library_add</mat-icon> Добавить товар 
+    </button>
+</div>

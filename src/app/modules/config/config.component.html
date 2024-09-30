@@ -1,0 +1,30 @@
+<div class="flex flex-col flex-auto max-w-xs">
+    <!-- 
+        Конфиг Redis
+     -->
+    <mat-checkbox [checked]="form.get('auto')!.value">Авто</mat-checkbox>
+    
+    <section>
+        <mat-form-field [formGroup]="form" appearance="outline" >
+            <mat-label>Пользователь</mat-label>
+            <input matInput formControlName="username">
+        </mat-form-field>    
+        <mat-form-field [formGroup]="form" appearance="outline">
+            <mat-label>Redis ip</mat-label>
+            <input matInput formControlName="redis_ip">
+        </mat-form-field>
+        <mat-form-field [formGroup]="form" appearance="outline">
+            <mat-label>Redis порт</mat-label>
+            <input matInput formControlName="redis_port">
+        </mat-form-field>
+    </section>
+    
+    <mat-divider></mat-divider>
+    
+    <section>
+
+    </section>
+    
+    
+
+</div>

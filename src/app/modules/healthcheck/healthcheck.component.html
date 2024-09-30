@@ -1,0 +1,39 @@
+<div class="flex flex-col flex-auto w-auto max-w-xs" >
+
+    <button mat-button (click)="checkProxy()" style="max-width: fit-content !important;">
+        <span class="text-base font-semibold text-gray-900">  
+            Check proxy
+            <ng-container>
+                <span>
+                    <mat-icon [ngClass]="{'status-unknown' : proxy_status.health=='unkn',
+                        'status-ok' : proxy_status.health=='ok',
+                        'status-err' : proxy_status.health=='err'}">
+                        signal_wifi_4_bar
+                    </mat-icon>
+                </span>
+            </ng-container>
+        </span>
+        <ng-container>
+            <span class="text-xs">{{proxy_status?.err}}</span>
+        </ng-container>
+    </button>
+
+    <button mat-button (click)="checkRedis()" style="max-width: fit-content !important;">
+        <span class="text-base font-semibold text-gray-900">
+            Check Redis
+            <ng-container>
+                <span>
+                    <mat-icon [ngClass]="{'status-unknown' : redis_status.health=='unkn',
+                        'status-ok' : redis_status.health=='ok',
+                        'status-err' : redis_status.health=='err'}">
+                        signal_wifi_4_bar
+                    </mat-icon>
+                </span>
+            </ng-container>
+        </span>
+        <ng-container>
+            <span class="text-xs">{{redis_status?.err}}</span>
+        </ng-container>
+        
+    </button>
+</div>

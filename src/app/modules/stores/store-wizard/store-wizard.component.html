@@ -1,0 +1,43 @@
+<div class="flex flex-col w-full h-full p-4">
+
+    <div class="flex flex-row w-full justify-between text-gray-500">
+        <span class="text-lg text-gray-500 mb-2">
+            Создание магазина
+        </span>
+        <button mat-button (click)="redirect()"> 
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <form [formGroup]="form">
+        <mat-form-field appearance="outline" class="mr-2" 
+            [formGroup]="form">
+            <mat-label>Наименование</mat-label>
+                <input matInput 
+                    [formControlName]="'name'">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Программа лояльности</mat-label>
+            <mat-select [formControlName]="'loyalty'">
+              <mat-option *ngFor="let program of _loyaltyProgramms" 
+                [value]="program">
+                <div class="flex flex-row">
+                    <span class="mr-2">
+                        {{program.level}}
+                    </span>
+                    <span>
+                        {{program.discount}}%
+                    </span>
+                </div>
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <!-- Подтверждение -->
+        <button mat-button (click)="createStore()"> 
+            <mat-icon>library_add</mat-icon>Создать
+        </button>
+    </form>
+</div>

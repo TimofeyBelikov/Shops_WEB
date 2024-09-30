@@ -1,0 +1,59 @@
+<div class="w-full h-full">
+    <div class="bg-gray-800 rounded-md">
+        <router-outlet>
+        </router-outlet>
+    </div>
+    
+
+    <!-- Меню -->
+    <ng-container *ngIf="false">
+    
+        <mat-form-field appearance="outline" class="mr-2" [formGroup]="form"> 
+            <mat-label>Ключ</mat-label>
+            <input matInput formControlName="key" [matAutocomplete]="auto">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+        </mat-form-field>
+    
+        <!-- Значние для type==string -->
+        <mat-form-field *ngIf="form.get('type')?.value =='string'"
+            appearance="outline" class="mr-2" [formGroup]="form">
+            <mat-label>Значение</mat-label>
+            <input matInput formControlName="value">
+            
+        </mat-form-field>
+    
+        <!-- Значние для type==hash -->
+        <ng-container *ngIf="form.get('type')?.value =='hash'">
+            <mat-form-field appearance="outline" class="mr-2" 
+                [formGroup]="form">
+            <mat-label>
+                Поле
+            </mat-label>
+            <input matInput formControlName="field">
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline" class="mr-2" 
+                [formGroup]="form">
+                <mat-label>Значение</mat-label>
+                <input matInput formControlName="value">
+            </mat-form-field>
+        </ng-container>
+
+        <!-- Подтверждение -->
+        <button mat-button (click)="null"> 
+            <mat-icon>create</mat-icon>
+        </button>
+    </ng-container>
+
+    <store-item *ngFor="let store of src.data"
+        (emitCreateStand)="onStandCreate($event)"
+        (emitCreateProduct)="onProductCreate($event)"
+        [store]="store">
+
+    </store-item>
+
+</div>

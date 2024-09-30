@@ -1,0 +1,70 @@
+<mat-accordion class="example-headers-align m-4 p-4" multi>
+    <mat-expansion-panel class="bg-gray-800 rounded-lg">
+        <mat-expansion-panel-header class="h-24">
+            <mat-panel-title>
+                <span class="text-gray-500 text-lg">
+                    {{store.name}}
+                </span>
+            </mat-panel-title>
+            <mat-panel-description>
+                 <!-- Количество стоек -->
+            <div class="flex flex-row w-full justify-between">
+                <ng-container >
+                    <div class="flex flex-row items-center">
+                        <mat-icon class="text-gray-600 mr-2">
+                            reorder
+                        </mat-icon>
+                        <span class="text-gray-600 text-lg">
+                            Стоек: {{store.stands.length}}
+                        </span>
+                    </div>
+                </ng-container>
+    
+                <!-- Количество товаров -->
+                <ng-container>
+                    <div class="flex flex-row items-center">
+                        <mat-icon class="text-gray-600 mr-2">
+                            loyalty
+                        </mat-icon>
+                        <span class="text-gray-600 text-lg">
+                            Товаров: {{productsCount}}
+                        </span>
+                    </div>
+                </ng-container>
+
+                <ng-container>
+                    <div class="flex flex-row items-center">
+                        <mat-icon class="text-gray-600 mr-2">
+                            loyalty
+                        </mat-icon>
+                        <span class="text-gray-600 text-lg">
+                            Скидка: {{loyalty}}%
+                        </span>
+                    </div>
+                </ng-container>
+                
+                <ng-container>
+                    <div class="flex flex-row">
+                        <button mat-button (click)="$event.stopPropagation(); createStand() "> 
+                            <mat-icon class="text-gray-600">
+                                library_add
+                            </mat-icon>
+                        </button>
+                        <button mat-button (click)="null"> 
+                            <mat-icon class="text-gray-600">
+                                edit
+                            </mat-icon>
+                        </button>
+                    </div>
+                </ng-container>
+            </div>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <stand-item *ngFor="let stand of store.stands"
+            [stand]="stand"
+            [store]="store"
+            (emitCreateProduct)="createProduct($event)">
+        </stand-item>
+    </mat-expansion-panel>
+</mat-accordion>

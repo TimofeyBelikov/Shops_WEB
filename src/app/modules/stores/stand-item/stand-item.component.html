@@ -1,0 +1,53 @@
+<div class="flex flex-col m-4 p-4 bg-gray-900 rounded-lg">
+    
+    <!-- Заголовок -->
+    <div class="flex flex-row justify-between items-baseline mb-4">
+
+        <span class="text-gray-500 text-lg">
+            {{stand.name}}
+        </span>
+    
+         <!-- Количество товаров -->
+         <ng-container>
+            <div class="flex flex-row items-center">
+                <mat-icon class="text-gray-600 mr-2">
+                    loyalty
+                </mat-icon>
+                <span class="text-gray-600 text-lg">
+                    Товаров: {{productsCount}}
+                </span>
+            </div>
+        </ng-container>
+        <ng-container>
+            <div class="flex flex-row">
+                <button mat-button (click)="createProduct()"> 
+                    <mat-icon class="text-gray-600">
+                        library_add
+                    </mat-icon>
+                </button>
+                <button mat-button (click)="null"> 
+                    <mat-icon class="text-gray-600">
+                        edit
+                    </mat-icon>
+                </button>
+            </div>
+        </ng-container>
+    </div>
+
+    <!-- Товары -->
+    <ng-container *ngIf="stand.products.length; else noProducts">
+        <product-item *ngFor="let product of stand.products;"
+            [stand]="stand"
+            [store]="store"
+            [product]="product">
+        </product-item>
+    </ng-container>
+    
+
+    <ng-template #noProducts>
+        <span class="text-gray-600 text-lg opacity-75">
+            Нет товаров
+        </span>
+    </ng-template>
+    
+</div>
